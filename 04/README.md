@@ -6,5 +6,5 @@
 
 #### ユーザデータベース
 
-/etc/passwd でユーザを確認
-/etc/group でグループを確認
+`/etc/passwd` でユーザを確認  
+`/etc/group` でグループを確認
