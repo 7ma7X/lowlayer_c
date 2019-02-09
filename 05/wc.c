@@ -35,11 +35,11 @@ static void do_wc(const char *path) {
     if (n == 0) break;
 
     for(int i=0;i<BUFFER_SIZE;++i) {
-      if(buffer[i] == 10) ++line_num;
+      if(buffer[i] == '\n') ++line_num;
     }
   }
-
-  fprintf(stdout, "%d", line_num+1);
+  if (close(fd) < 0) die(path);
+  fprintf(stdout, "%d\n", line_num+1);
 }
 
 static void die(const char *s) {
