@@ -8,8 +8,8 @@ int main(int argc, char* argv[]) {
     FILE *f;
     int c;
     unsigned char buf[BUFFER_SIZE];
-    size_t size = 4;
-    size_t nmemb = 4;
+    size_t size = 1;
+    size_t nmemb = sizeof buf;
 
     f = fopen(argv[i], "r");
 
@@ -18,12 +18,20 @@ int main(int argc, char* argv[]) {
       exit(1);
     }
 
-    while ((c = fread(buf, size, nmemb, f)) == nmemb) {
-      fwrite(buf, size, nmemb, stdout);
-    }
+    for (;;) {
+      c = fread(buf, size, nmemb, f);
+      if (ferror(f)) {
+        perror(argv[i]);
+        exit(1);
+      }
 
-    if (ferror(f)) {
-      exit(1);
+      size_t n = fwrite(buf, size, c, stdout);
+      // 読めた分 c だけ書くのが大切だった
+      if (n < c) {
+        perror(argv[i]);
+        exit(1);
+      }
+      if (c < nmemb) break;
     }
 
     fclose(f);
