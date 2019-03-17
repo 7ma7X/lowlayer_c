@@ -46,7 +46,7 @@ extern char **environ;
 #### set-uidビット
 
 ファイルパーミッションのset-uidビットを立てると、そのプログラムを、起動したユーザにかかわらずプログラムファイルのオーナーの権限で起動される。  
-起動した方のユーザIDを**実ユーザID（real user ID）**、set-uidプログラムのオーナーのIDの方を**実効ユーザID（effective user ID）**と呼ぶ。  
+起動した方のユーザIDを**実ユーザID（real user ID）**、set-uidプログラムのオーナーのIDの方を **実効ユーザID（effective user ID）** と呼ぶ。  
 ユーザーだけでなくグループにも同様のものがある。
 
 #### クレデンシャルを得るシステムコール
@@ -57,7 +57,7 @@ extern char **environ;
 - `getegid()` 自プロセスの実効グループID
 - `getgroups()` 自プロセスの補足グループIDをbufに書き込む
 
-#### 別のクレデンシャルへの以降
+#### 別のクレデンシャルへの移行
 
 - `setuid()`
 - `setgid()`
